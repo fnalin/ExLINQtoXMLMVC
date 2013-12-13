@@ -1,0 +1,86 @@
+﻿@model IEnumerable<UI.MVC.Models.Contato>
+@{
+    ViewBag.Title = "Home Page";
+}
+<br />
+<div class="row text-center">
+    <h4>Página inicial - <small>Listagem de Contatos</small></h4>
+</div>
+<br />
+<!-- Button trigger modal -->
+<div class="row text-center">
+    <button class="btn btn-default" data-toggle="modal" data-target="#myModal">
+        Novo Contato
+    </button>
+</div>
+<br />
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <table class="table table-condensed table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>
+                        Nome
+                    </th>
+                    <th>
+                        Sobrenome
+                    </th>
+                    <th>
+                        Email
+                    </th>
+                    <th>
+                        Telefone
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Nome)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Sobrenome)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Email)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Telefone)
+                        </td>
+                        <td class="text-center">
+                            <button class="btn btn-default edit-btn" data-id="@item.ID" title="Editar @item.Nome">
+                                <i class="glyphicon glyphicon-check"></i>
+                            </button>
+                            <button class="btn btn-default delete-btn" data-nome="@item.Nome" data-id="@item.ID" title="Excluir @item.Nome">
+                                <i class="glyphicon glyphicon-trash"></i>
+                            </button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+@*@Html.Partial("_Upload")
+@Html.Partial("_Delete")*@
+@section scripts {
+    <script>
+        //$(".delete-btn").click(function (e) {
+        //    e.preventDefault();
+        //    var itemID = $(this).data('id');
+        //    var nome = $(this).data("nome");
+        //    $('#deleteModal').modal('show');
+        //    $(".modal-body input[type=hidden]").val(itemID);
+        //    $(".modal-body span").text(nome);
+        //});
+        //$("#deleteModal .modal-footer button").click(function (e) {
+        //    e.preventDefault();
+        //    var itemID = $(".modal-body input[type=hidden]").val();
+        //    window.location = "Home/ExcluirArquivo/" + itemID;
+        //    $('#deleteModal').modal('hide');
+        //});
+    </script>
+}
