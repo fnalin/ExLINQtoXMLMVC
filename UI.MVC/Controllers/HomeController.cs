@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Web;
 using System.Web.Hosting;
 using System.Web.Mvc;
 using System.Xml.Linq;
@@ -12,14 +10,20 @@ namespace UI.MVC.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index()
+
+        string filePath;
+
+        public HomeController()
         {
             //stackoverflow.com/questions/3063614/xelement-load-app-data-file-xml-could-not-find-a-part-of-the-path
-            string filePath = Path.Combine(
+            filePath = Path.Combine(
                         HostingEnvironment.ApplicationPhysicalPath,
                         @"App_Data\Contatos.xml"
                     );
+        }
 
+        public ActionResult Index()
+        {
             var element = XElement.Load(filePath);
             var query = from member in element.Descendants("contato")
                         select new Contato
@@ -34,18 +38,32 @@ namespace UI.MVC.Controllers
             return View(query);
         }
 
+        public ActionResult DeleteContato(string id)
+        {
+            var element = XElement.Load(filePath);
+            if (element != null)
+            {
+                var xml = (from member in element.Descendants("contato")
+                               where
+                               member.Attribute("id").Value == id
+                               select member)
+                           .SingleOrDefault();
+
+                if (xml != null)
+                {
+                    xml.Remove();
+                    element.Save(filePath);
+                }
+            }
+            return RedirectToAction("Index");
+        }
+
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "App demo Team - MVC - LINQTOXML";
 
             return View();
         }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
+        
     }
 }

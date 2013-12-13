@@ -64,23 +64,23 @@
         </table>
     </div>
 </div>
-@*@Html.Partial("_Upload")
-@Html.Partial("_Delete")*@
+@Html.Partial("_New")
+@Html.Partial("_Delete")
 @section scripts {
     <script>
-        //$(".delete-btn").click(function (e) {
-        //    e.preventDefault();
-        //    var itemID = $(this).data('id');
-        //    var nome = $(this).data("nome");
-        //    $('#deleteModal').modal('show');
-        //    $(".modal-body input[type=hidden]").val(itemID);
-        //    $(".modal-body span").text(nome);
-        //});
-        //$("#deleteModal .modal-footer button").click(function (e) {
-        //    e.preventDefault();
-        //    var itemID = $(".modal-body input[type=hidden]").val();
-        //    window.location = "Home/ExcluirArquivo/" + itemID;
-        //    $('#deleteModal').modal('hide');
-        //});
+        $(".delete-btn").click(function (e) {
+            e.preventDefault();
+            var itemID = $(this).data('id');
+            var nome = $(this).data("nome");
+            $('#deleteModal').modal('show');
+            $(".modal-body input[type=hidden]").val(itemID);
+            $(".modal-body span").text(nome);
+        });
+        $("#deleteModal .modal-footer button").click(function (e) {
+            e.preventDefault();
+            var itemID = $(".modal-body input[type=hidden]").val();
+            window.location = "@Url.Action("DeleteContato", "Home")/" + itemID;
+            $('#deleteModal').modal('hide');
+        });
     </script>
 }
