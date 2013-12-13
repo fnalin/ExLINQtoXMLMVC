@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Contatos>
+  <contato id="f02c78b4956f4b2f9ecfb7a5bfbcfbf6">
+    <nome>Fabiano</nome>
+    <sobrenome>Nalin</sobrenome>
+    <email>fabiano.nalin@gmail.com</email>
+    <telefone>123-456-7890</telefone>
+  </contato>
+  <contato id="f02c78b4956f4b2f9ecfb7a5bfbcfbf6">
+    <nome>Priscila</nome>
+    <sobrenome>Nalin</sobrenome>
+    <email>priscila.nalin@gmail.com</email>
+    <telefone>123-456-7890</telefone>
+  </contato>
+  <contato id="f02c78b4956f4b2f9ecfb7a5bfbcfbf6">
+    <nome>Raphael</nome>
+    <sobrenome>Nalin</sobrenome>
+    <email>raphinha.nalin@gmail.com</email>
+    <telefone>123-456-7890</telefone>
+  </contato>
+</Contatos>
