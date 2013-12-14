@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Web.Hosting;
@@ -15,6 +16,7 @@ namespace UI.MVC.Controllers
 
         public HomeController()
         {
+            //http://deepumi.wordpress.com/2010/03/08/linq-to-xml-crud-operations/
             //stackoverflow.com/questions/3063614/xelement-load-app-data-file-xml-could-not-find-a-part-of-the-path
             filePath = Path.Combine(
                         HostingEnvironment.ApplicationPhysicalPath,
@@ -44,9 +46,9 @@ namespace UI.MVC.Controllers
             if (element != null)
             {
                 var xml = (from member in element.Descendants("contato")
-                               where
-                               member.Attribute("id").Value == id
-                               select member)
+                           where
+                           member.Attribute("id").Value == id.Replace("-", "")
+                           select member)
                            .SingleOrDefault();
 
                 if (xml != null)
@@ -55,7 +57,61 @@ namespace UI.MVC.Controllers
                     element.Save(filePath);
                 }
             }
+
             return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public ActionResult NovoContato(Contato contato)
+        {
+            var doc = XDocument.Load(filePath);  //load the xml file.
+            IEnumerable<XElement> oMemberList = doc.Element("Contatos").Elements("contato");
+            if (contato.ID == Guid.Empty)
+            {
+                var oMember = new XElement("contato",
+                 new XAttribute("id", Guid.NewGuid().ToString().Replace("-", "")),
+                 new XElement("nome", contato.Nome),
+                 new XElement("sobrenome", contato.Sobrenome),
+                 new XElement("email", contato.Email),
+                 new XElement("telefone", contato.Telefone)
+                 );
+                oMemberList.Last().AddAfterSelf(oMember);  //add node to the last element.}
+            }
+            else
+            {
+                var oMember = (from member in oMemberList
+                               where
+                               member.Attribute("id").Value == contato.ID.ToString().Replace("-", "")
+                               select member).SingleOrDefault();
+
+                oMember.SetElementValue("nome", contato.Nome != null ? contato.Nome : string.Empty);
+                oMember.SetElementValue("sobrenome", contato.Sobrenome != null ? contato.Sobrenome: string.Empty);
+                oMember.SetElementValue("email", contato.Email != null ? contato.Email : string.Empty);
+                oMember.SetElementValue("telefone", contato.Telefone != null ? contato.Telefone : string.Empty);
+            }
+            doc.Save(filePath);
+            return RedirectToAction("Index");
+        }
+
+        public JsonResult EditContato(string id)
+        {
+            XDocument doc = XDocument.Load(filePath); //replace with xml file path
+            IEnumerable<XElement> oMemberList = doc.Element("Contatos").Elements("contato"); //get the member node.
+
+            var oMember = (from member in oMemberList
+                           where
+                           member.Attribute("id").Value == id.Replace("-", "")
+                           select member).SingleOrDefault(); //replace memberId by querystring value.
+
+            return Json(
+               new
+               {
+                   nome = oMember.Element("nome").Value,
+                   sobrenome = oMember.Element("sobrenome").Value,
+                   email = oMember.Element("email").Value,
+                   telefone = oMember.Element("telefone").Value
+               }
+                   , JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult About()
@@ -64,6 +120,6 @@ namespace UI.MVC.Controllers
 
             return View();
         }
-        
+
     }
 }

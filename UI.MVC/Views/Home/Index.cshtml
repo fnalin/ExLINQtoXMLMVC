@@ -51,7 +51,7 @@
                             @Html.DisplayFor(modelItem => item.Telefone)
                         </td>
                         <td class="text-center">
-                            <button class="btn btn-default edit-btn" data-id="@item.ID" title="Editar @item.Nome">
+                            <button class="btn btn-default edit-btn" data-id="@item.ID.ToString().Replace("-","")" title="Editar @item.Nome">
                                 <i class="glyphicon glyphicon-check"></i>
                             </button>
                             <button class="btn btn-default delete-btn" data-nome="@item.Nome" data-id="@item.ID" title="Excluir @item.Nome">
@@ -82,5 +82,39 @@
             window.location = "@Url.Action("DeleteContato", "Home")/" + itemID;
             $('#deleteModal').modal('hide');
         });
+        $('#myModal').on('show.bs.modal', function () {
+            $("#inputID").val('Auto');
+            $("#inputIDHidden").val('');
+            $("#inputNome").val('');
+            $("#inputSobrenome").val('');
+            $("#inputEmail").val('');
+            $("#inputTelefone").val('');
+        })
+        $(".edit-btn").click(function (e) {
+            e.preventDefault();
+            var itemID = $(this).data('id');
+            CarregaContato(itemID);
+            //$("#inputID").val(itemID);
+            //$('#myModal').modal('show');
+        });
+        var CarregaContato = function (id) {
+            $.ajax({
+                type: "GET",
+                url: "@Url.Action("EditContato", "Home")/" + id,
+                dataType: "json",
+                cache: false,
+                beforeSend: function () {
+                    $('#myModal').modal('show');
+                },
+                success: function (data) {
+                    $("#inputID").val(id);
+                    $("#inputIDHidden").val(id);
+                    $("#inputNome").val(data.nome);
+                    $("#inputSobrenome").val(data.sobrenome);
+                    $("#inputEmail").val(data.email);
+                    $("#inputTelefone").val(data.telefone);
+                },
+            });
+        };
     </script>
 }

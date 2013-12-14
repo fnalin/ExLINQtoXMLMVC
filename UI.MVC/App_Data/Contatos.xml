@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Contatos>
   <contato id="f02c78b4956f4b2f9ecfb7a5bfbcfbf6">
     <nome>Fabiano</nome>
@@ -6,16 +6,22 @@
     <email>fabiano.nalin@gmail.com</email>
     <telefone>123-456-7890</telefone>
   </contato>
-  <contato id="f02c78b4956f4b2f9ecfb7a5bfbcfbf6">
+  <contato id="f02c78b4956f4b2f9ecfb7a5bfbcfbf5">
     <nome>Priscila</nome>
     <sobrenome>Nalin</sobrenome>
     <email>priscila.nalin@gmail.com</email>
     <telefone>123-456-7890</telefone>
   </contato>
-  <contato id="f02c78b4956f4b2f9ecfb7a5bfbcfbf6">
+  <contato id="f02c78b4956f4b2f9ecfb7a5bfbcfbf4">
     <nome>Raphael</nome>
     <sobrenome>Nalin</sobrenome>
     <email>raphinha.nalin@gmail.com</email>
     <telefone>123-456-7890</telefone>
+  </contato>
+  <contato id="544f50cf1efb47408d4330a638fd03c8">
+    <nome>a</nome>
+    <sobrenome></sobrenome>
+    <email></email>
+    <telefone></telefone>
   </contato>
 </Contatos>

@@ -1,1 +1,50 @@
-﻿
+﻿<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        @using (Html.BeginForm("NovoContato", "Home", FormMethod.Post, new { @class = "form-horizontal" }))
+        {
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">Novo Contato</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="inputID" class="col-sm-2 control-label">ID</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="inputID" disabled />
+                            <input type="hidden" class="form-control" id="inputIDHidden" name="id" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputNome" class="col-sm-2 control-label">Nome</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="inputNome" name="nome" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputSobrenome" class="col-sm-2 control-label">Sobrenome</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="inputSobrenome" name="sobrenome" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputEmail" class="col-sm-2 control-label">E-mail</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="inputEmail" name="email" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputTelefone" class="col-sm-2 control-label">Telefone</label>
+                        <div class="col-sm-5">
+                            <input type="text" class="form-control" id="inputTelefone" name="telefone" />
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-success" type="submit">Enviar</button>
+                </div>
+            </div><!-- /.modal-content -->
+        }
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
