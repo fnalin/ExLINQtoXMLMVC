@@ -16,7 +16,7 @@ namespace UI.MVC.Controllers
 
         public HomeController()
         {
-            //http://deepumi.wordpress.com/2010/03/08/linq-to-xml-crud-operations/
+            //deepumi.wordpress.com/2010/03/08/linq-to-xml-crud-operations/
             //stackoverflow.com/questions/3063614/xelement-load-app-data-file-xml-could-not-find-a-part-of-the-path
             filePath = Path.Combine(
                         HostingEnvironment.ApplicationPhysicalPath,
@@ -24,6 +24,7 @@ namespace UI.MVC.Controllers
                     );
         }
 
+        #region Métodos do CRUD
         public ActionResult Index()
         {
             var element = XElement.Load(filePath);
@@ -75,7 +76,7 @@ namespace UI.MVC.Controllers
                  new XElement("email", contato.Email),
                  new XElement("telefone", contato.Telefone)
                  );
-                oMemberList.Last().AddAfterSelf(oMember);  //add node to the last element.}
+                oMemberList.Last().AddAfterSelf(oMember);  //add node to the last element.
             }
             else
             {
@@ -95,13 +96,13 @@ namespace UI.MVC.Controllers
 
         public JsonResult EditContato(string id)
         {
-            XDocument doc = XDocument.Load(filePath); //replace with xml file path
+            XDocument doc = XDocument.Load(filePath); 
             IEnumerable<XElement> oMemberList = doc.Element("Contatos").Elements("contato"); //get the member node.
 
             var oMember = (from member in oMemberList
                            where
                            member.Attribute("id").Value == id.Replace("-", "")
-                           select member).SingleOrDefault(); //replace memberId by querystring value.
+                           select member).SingleOrDefault();
 
             return Json(
                new
@@ -113,6 +114,7 @@ namespace UI.MVC.Controllers
                }
                    , JsonRequestBehavior.AllowGet);
         }
+        #endregion
 
         public ActionResult About()
         {

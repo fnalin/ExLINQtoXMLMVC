@@ -67,54 +67,10 @@
 @Html.Partial("_New")
 @Html.Partial("_Delete")
 @section scripts {
+    @Scripts.Render("~/bundles/jqueryval")
     <script>
-        $(".delete-btn").click(function (e) {
-            e.preventDefault();
-            var itemID = $(this).data('id');
-            var nome = $(this).data("nome");
-            $('#deleteModal').modal('show');
-            $(".modal-body input[type=hidden]").val(itemID);
-            $(".modal-body span").text(nome);
-        });
-        $("#deleteModal .modal-footer button").click(function (e) {
-            e.preventDefault();
-            var itemID = $(".modal-body input[type=hidden]").val();
-            window.location = "@Url.Action("DeleteContato", "Home")/" + itemID;
-            $('#deleteModal').modal('hide');
-        });
-        $('#myModal').on('show.bs.modal', function () {
-            $("#inputID").val('Auto');
-            $("#inputIDHidden").val('');
-            $("#inputNome").val('');
-            $("#inputSobrenome").val('');
-            $("#inputEmail").val('');
-            $("#inputTelefone").val('');
-        })
-        $(".edit-btn").click(function (e) {
-            e.preventDefault();
-            var itemID = $(this).data('id');
-            CarregaContato(itemID);
-            //$("#inputID").val(itemID);
-            //$('#myModal').modal('show');
-        });
-        var CarregaContato = function (id) {
-            $.ajax({
-                type: "GET",
-                url: "@Url.Action("EditContato", "Home")/" + id,
-                dataType: "json",
-                cache: false,
-                beforeSend: function () {
-                    $('#myModal').modal('show');
-                },
-                success: function (data) {
-                    $("#inputID").val(id);
-                    $("#inputIDHidden").val(id);
-                    $("#inputNome").val(data.nome);
-                    $("#inputSobrenome").val(data.sobrenome);
-                    $("#inputEmail").val(data.email);
-                    $("#inputTelefone").val(data.telefone);
-                },
-            });
-        };
+        var urlDelete = "@Url.Action("DeleteContato", "Home")/";
+        var urlEdit = "@Url.Action("EditContato", "Home")/";
     </script>
+    <script src="~/Scripts/codigos-pagina-index.js"></script>
 }

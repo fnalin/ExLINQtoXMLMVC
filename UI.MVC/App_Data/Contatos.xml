@@ -18,10 +18,16 @@
     <email>raphinha.nalin@gmail.com</email>
     <telefone>123-456-7890</telefone>
   </contato>
-  <contato id="544f50cf1efb47408d4330a638fd03c8">
-    <nome>a</nome>
-    <sobrenome></sobrenome>
-    <email></email>
-    <telefone></telefone>
+  <contato id="6b26c17610044a4e8cfd4be834b476d4">
+    <nome>Novo Contato</nome>
+    <sobrenome>Teste</sobrenome>
+    <email>novo@novo.com</email>
+    <telefone />
+  </contato>
+  <contato id="ef9e518caaa04a27a7732f4dfecb42fe">
+    <nome>Raimundo</nome>
+    <sobrenome>Goes</sobrenome>
+    <email />
+    <telefone />
   </contato>
 </Contatos>
