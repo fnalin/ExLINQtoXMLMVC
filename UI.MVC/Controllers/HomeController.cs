@@ -27,18 +27,7 @@ namespace UI.MVC.Controllers
         #region Métodos do CRUD
         public ActionResult Index()
         {
-            var element = XElement.Load(filePath);
-            var query = from member in element.Descendants("contato")
-                        select new Contato
-                        {
-                            ID = Guid.Parse(member.Attribute("id").Value),
-                            Nome = member.Element("nome").Value,
-                            Sobrenome = member.Element("sobrenome").Value,
-                            Email = member.Element("email").Value,
-                            Telefone = member.Element("telefone").Value
-                        };
-
-            return View(query);
+            return View();
         }
 
         public ActionResult DeleteContato(string id)
@@ -115,6 +104,58 @@ namespace UI.MVC.Controllers
                    , JsonRequestBehavior.AllowGet);
         }
         #endregion
+
+        const int qtdeItensNoBloco = 5;//Qtde exibida por vez
+
+        public PartialViewResult RelacaoTabela(int bloco)
+        {
+            var element = XElement.Load(filePath);
+            var query = from member in element.Descendants("contato")
+                        select new Contato
+                        {
+                            ID = Guid.Parse(member.Attribute("id").Value),
+                            Nome = member.Element("nome").Value,
+                            Sobrenome = member.Element("sobrenome").Value,
+                            Email = member.Element("email").Value,
+                            Telefone = member.Element("telefone").Value
+                        };
+
+            //System.Threading.Thread.Sleep(2000);
+            if (bloco == 0) //se p bloco for 0 então ir para o último (esse valor vem da interface, qdo o cara cria um novo)
+            {
+                var total = query.Count();
+                bloco = (total / qtdeItensNoBloco);
+                if (total % qtdeItensNoBloco > 0)
+                    bloco++;
+            }
+
+            var skip = ((bloco * qtdeItensNoBloco) - (qtdeItensNoBloco - 1)) - 1;
+            var dados = query.Skip(skip).Take(qtdeItensNoBloco);
+
+            return PartialView("_DadosTable", dados.ToList());
+        }
+
+        public PartialViewResult CarregaMenuPaginacao()
+        {
+            var element = XElement.Load(filePath);
+            var query = from member in element.Descendants("contato")
+                        select new Contato
+                        {
+                            ID = Guid.Parse(member.Attribute("id").Value),
+                            Nome = member.Element("nome").Value,
+                            Sobrenome = member.Element("sobrenome").Value,
+                            Email = member.Element("email").Value,
+                            Telefone = member.Element("telefone").Value
+                        };
+            var total = query.Count();
+
+            var _blocoTotal = (total / qtdeItensNoBloco);
+            if (total % qtdeItensNoBloco > 0)
+                _blocoTotal++;
+
+            ViewBag.total = _blocoTotal;
+            return PartialView("_MenuPaginacao");
+        }
 
         public ActionResult About()
         {

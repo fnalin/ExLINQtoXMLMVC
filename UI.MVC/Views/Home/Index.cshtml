@@ -1,5 +1,4 @@
-﻿@model IEnumerable<UI.MVC.Models.Contato>
-@{
+﻿@{
     ViewBag.Title = "Home Page";
 }
 <br />
@@ -7,7 +6,6 @@
     <h4>Página inicial - <small>Listagem de Contatos</small></h4>
 </div>
 <br />
-<!-- Button trigger modal -->
 <div class="row text-center">
     <button class="btn btn-default" data-toggle="modal" data-target="#myModal">
         Novo Contato
@@ -16,54 +14,11 @@
 <br />
 <div class="row">
     <div class="col-md-8 col-md-offset-2">
-        <table class="table table-condensed table-bordered table-striped table-hover">
-            <thead>
-                <tr>
-                    <th>
-                        Nome
-                    </th>
-                    <th>
-                        Sobrenome
-                    </th>
-                    <th>
-                        Email
-                    </th>
-                    <th>
-                        Telefone
-                    </th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model)
-                {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Nome)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Sobrenome)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Email)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Telefone)
-                        </td>
-                        <td class="text-center">
-                            <div class="btn-group text-center">
-                                <button class="btn btn-default edit-btn" data-id="@item.ID.ToString().Replace("-","")" title="Editar @item.Nome">
-                                    <i class="glyphicon glyphicon-check"></i>
-                                </button>
-                                <button class="btn btn-default delete-btn" data-nome="@item.Nome" data-id="@item.ID" title="Excluir @item.Nome">
-                                    <i class="glyphicon glyphicon-trash"></i>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
+        <div id="update" class="text-center">
+            <span></span>&nbsp;<i class="glyphicon glyphicon-refresh"></i>
+        </div>
+        <div id="tabelaDados">@*Dados são carregados aqui!*@</div>
+        <div id="menuPaginacao">@*Paginação vai aqui*@</div>
     </div>
 </div>
 @Html.Partial("_Contato")
@@ -71,6 +26,8 @@
 @section scripts {
     @Scripts.Render("~/bundles/jqueryval")
     <script>
+        var urlTabelaDados = "@Url.Action("RelacaoTabela", "Home")/";
+        var urlMnuPaginacao = "@Url.Action("CarregaMenuPaginacao", "Home")/";
         var urlDelete = "@Url.Action("DeleteContato", "Home")/";
         var urlEdit = "@Url.Action("EditContato", "Home")/";
     </script>

@@ -9,6 +9,10 @@
     padding-right: 15px;
 }
 
+#tabelaDados {
+    min-height: 100px;
+}
+
 .btn-group {
     visibility: hidden;
 }
@@ -20,4 +24,80 @@
 
 .table tbody > tr > td {
     vertical-align: middle;
+}
+
+
+/* Usado para animar os ícones - jsfiddle.net/kVHbV/ */
+.icon-refresh-animate {
+    visibility: visible !important;
+    -moz-animation-name: rotateThis;
+    -o-animation-name: rotateThis;
+    -webkit-animation-name: rotateThis;
+    animation-name: rotateThis;
+    -moz-animation-duration: .5s;
+    -o-animation-duration: .5s;
+    -webkit-animation-duration: .5s;
+    animation-duration: .5s;
+    -moz-animation-iteration-count: infinite;
+    -o-animation-iteration-count: infinite;
+    -webkit-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+    -moz-animation-timing-function: linear;
+    -o-animation-timing-function: linear;
+    -webkit-animation-timing-function: linear;
+    animation-timing-function: linear;
+}
+
+@-moz-keyframes rotateThis {
+    from {
+        -moz-transform: scale( 1 ) rotate( 0deg );
+        -ms-transform: scale( 1 ) rotate( 0deg );
+        -o-transform: scale( 1 ) rotate( 0deg );
+        -webkit-transform: scale( 1 ) rotate( 0deg );
+        transform: scale( 1 ) rotate( 0deg );
+    }
+
+    to {
+        -moz-transform: scale( 1 ) rotate( 360deg );
+        -ms-transform: scale( 1 ) rotate( 360deg );
+        -o-transform: scale( 1 ) rotate( 360deg );
+        -webkit-transform: scale( 1 ) rotate( 360deg );
+        transform: scale( 1 ) rotate( 360deg );
+    }
+}
+
+@-webkit-keyframes rotateThis {
+    from {
+        -moz-transform: scale( 1 ) rotate( 0deg );
+        -ms-transform: scale( 1 ) rotate( 0deg );
+        -o-transform: scale( 1 ) rotate( 0deg );
+        -webkit-transform: scale( 1 ) rotate( 0deg );
+        transform: scale( 1 ) rotate( 0deg );
+    }
+
+    to {
+        -moz-transform: scale( 1 ) rotate( 360deg );
+        -ms-transform: scale( 1 ) rotate( 360deg );
+        -o-transform: scale( 1 ) rotate( 360deg );
+        -webkit-transform: scale( 1 ) rotate( 360deg );
+        transform: scale( 1 ) rotate( 360deg );
+    }
+}
+
+@keyframes rotateThis {
+    from {
+        -moz-transform: scale( 1 ) rotate( 0deg );
+        -ms-transform: scale( 1 ) rotate( 0deg );
+        -o-transform: scale( 1 ) rotate( 0deg );
+        -webkit-transform: scale( 1 ) rotate( 0deg );
+        transform: scale( 1 ) rotate( 0deg );
+    }
+
+    to {
+        -moz-transform: scale( 1 ) rotate( 360deg );
+        -ms-transform: scale( 1 ) rotate( 360deg );
+        -o-transform: scale( 1 ) rotate( 360deg );
+        -webkit-transform: scale( 1 ) rotate( 360deg );
+        transform: scale( 1 ) rotate( 360deg );
+    }
 }

@@ -27,8 +27,8 @@
   <contato id="ef9e518caaa04a27a7732f4dfecb42fe">
     <nome>Raimundo</nome>
     <sobrenome>Goes</sobrenome>
-    <email />
-    <telefone />
+    <email>raimundinho@globo.com</email>
+    <telefone></telefone>
   </contato>
   <contato id="4707e6c306cf46afa6f00d62b65a8b2e">
     <nome>Daniel</nome>
@@ -54,23 +54,17 @@
     <email>nair.mitsui@msn.com</email>
     <telefone>1111-1111</telefone>
   </contato>
-  <contato id="18baa6c5986e4116840db471744fdc5d">
-    <nome>Brad</nome>
-    <sobrenome>Pitt</sobrenome>
-    <email>bp@teste.com</email>
-    <telefone>1111-1112</telefone>
-  </contato>
   <contato id="0b58440331ba4e80a3cfbf9e2c37e330">
     <nome>Angelina</nome>
-    <sobrenome>Julie</sobrenome>
+    <sobrenome>Julie II</sobrenome>
     <email>angelina.juli@teste.com</email>
     <telefone>1111-1112</telefone>
   </contato>
   <contato id="fb48762ef8884c76ae14b28b86901e2e">
     <nome>Morgan</nome>
     <sobrenome>Freeman</sobrenome>
-    <email />
-    <telefone />
+    <email></email>
+    <telefone></telefone>
   </contato>
   <contato id="d817925685e64fbcb2111d75d461c5fa">
     <nome>Bruce</nome>
@@ -93,6 +87,12 @@
   <contato id="aff2b38005ad43faa9c93b31c593f5d8">
     <nome>John</nome>
     <sobrenome>Petrucci</sobrenome>
+    <email />
+    <telefone />
+  </contato>
+  <contato id="711cc535075c4a1795c2a443d21dc4ce">
+    <nome>Novo item</nome>
+    <sobrenome>Teste</sobrenome>
     <email />
     <telefone />
   </contato>

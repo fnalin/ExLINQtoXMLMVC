@@ -1,0 +1,49 @@
+﻿@model List<UI.MVC.Models.Contato>
+<table class="table table-condensed table-bordered table-striped table-hover">
+    <thead>
+        <tr>
+            <th>
+                Nome
+            </th>
+            <th>
+                Sobrenome
+            </th>
+            <th>
+                Email
+            </th>
+            <th>
+                Telefone
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Sobrenome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Telefone)
+                </td>
+                <td class="text-center">
+                    <div class="btn-group text-center">
+                        <button class="btn btn-default edit-btn" data-id="@item.ID.ToString().Replace("-","")" title="Editar @item.Nome">
+                            <i class="glyphicon glyphicon-check"></i>
+                        </button>
+                        <button class="btn btn-default delete-btn" data-nome="@item.Nome" data-id="@item.ID" title="Excluir @item.Nome">
+                            <i class="glyphicon glyphicon-trash"></i>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

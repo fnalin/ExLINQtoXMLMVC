@@ -46,20 +46,9 @@ var validador = $("form").validate({
     }
 });
 
-$(".delete-btn").click(function (e) {
-    e.preventDefault();
-    var itemID = $(this).data('id');
-    var nome = $(this).data("nome");
-    $('#deleteModal').modal('show');
-    $(".modal-body input[type=hidden]").val(itemID);
-    $(".modal-body span").text(nome);
-});
-
-$("#deleteModal .modal-footer button").click(function (e) {
-    e.preventDefault();
-    var itemID = $(".modal-body input[type=hidden]").val();
-    window.location = urlDelete + itemID;
-    $('#deleteModal').modal('hide');
+$().ready(function () {
+    CarregaDados(1);
+    CarregaPaginacao();
 });
 
 $('#myModal').on('shown.bs.modal', function () {
@@ -81,13 +70,93 @@ $("button.btn.btn-default").click(function () {
     $('#myModal .modal-header h4').text('Novo Contato');
 });
 
-$(".edit-btn").click(function (e) {
+var CarregaDados = function (bloco) {
+    var strUrl = urlTabelaDados + "?bloco="+bloco;
+    $.ajax(
+    {
+        type: 'GET',
+        url: strUrl,
+        dataType: 'html',
+        cache: false,
+        async: true,
+        beforeSend: function () {
+            $("#update i").removeClass("hide");
+            $("#update span").text(" Atualizando");
+            $("#update i").addClass("icon-refresh-animate");
+        },
+        success: function (data) {
+            $('#tabelaDados').html(data);
+            $(".delete-btn").click(function (e) {
+                e.preventDefault();
+                var itemID = $(this).data('id');
+                var nome = $(this).data("nome");
+                $('#deleteModal').modal('show');
+                $(".modal-body input[type=hidden]").val(itemID);
+                $(".modal-body span").text(nome);
+            });
+            $(".edit-btn").click(function (e) {
+                e.preventDefault();
+                var itemID = $(this).data('id');
+                $('#myModal .modal-header h4').text('Editar Contato');
+                CarregaContato(itemID);
+            });
+
+        },
+        complete: function () {
+            $("#update i").removeClass("icon-refresh-animate");
+            $("#update i").addClass("hide");
+            $("#update span").text('');
+        },
+        error: function () {
+            $("#tabelaDados").html("<div id='erro-mensagem'><p style='color:gray;'><small><em><strong>Erro.<br />Não foi possível obter os dados do servidor</strong></em></small></p></div>");
+        },
+    });
+};
+
+var CarregaPaginacao = function (active) {
+    var strUrl = urlMnuPaginacao;
+    $.ajax({
+        type: 'GET',
+        url: strUrl,
+        dataType: 'html',
+        cache: false,
+        async: true,
+        success: function (data) {
+            $("#menuPaginacao").html(data);
+            $("#menuPaginacao ul li").click(function (e) {
+                e.preventDefault();
+                var itemClick = $(this);
+                CarregaDados(Number(itemClick.text()));
+                PagClick(itemClick);
+            });
+            switch (active) {
+                case "last":
+                    $("#menuPaginacao ul li:last-child").addClass("active");
+                    break;
+                case undefined:
+                    $("#menuPaginacao ul li:first-child").addClass("active");
+                    break;
+                default:
+                    $("#menuPaginacao ul li:nth-child(" + active + ")").addClass("active");
+                    break;
+            }
+        },
+        error: function () {
+            $("#menuPaginacao").html("<div id='erro-mensagem'><p style='color:gray;'><small><em><strong>Erro.<br />Não foi possível obter a paginação de forma correta do servidor</strong></em></small></p></div>");
+        },
+    });
+}
+
+function PagClick(e) {
+    $("#menuPaginacao ul li.active").removeClass("active");
+    e.addClass("active");
+}
+
+$("#deleteModal .modal-footer button").click(function (e) {
     e.preventDefault();
-    var itemID = $(this).data('id');
-    $('#myModal .modal-header h4').text('Editar Contato');
-    CarregaContato(itemID);
-    //$("#inputID").val(itemID);
-    //$('#myModal').modal('show');
+    var itemID = $(".modal-body input[type=hidden]").val();
+    window.location = urlDelete + itemID;
+    $('#deleteModal').modal('hide');
 });
 
 var CarregaContato = function (id) {

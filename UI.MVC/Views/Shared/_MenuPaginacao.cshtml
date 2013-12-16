@@ -1,0 +1,13 @@
+﻿@{
+    var itensPag = (int)ViewBag.total;
+}
+@if (itensPag > 1)
+{
+    <ul class="pagination">
+        @for (int i = 1; i <= itensPag; i++)
+        {
+            <li><a href="#">@i.ToString("00")</a></li>
+
+        }
+    </ul>
+}
