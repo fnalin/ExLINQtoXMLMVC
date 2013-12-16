@@ -77,9 +77,14 @@ $('#myModal').on('show.bs.modal', function () {
     $("#inputTelefone").val('');
 });
 
+$("button.btn.btn-default").click(function () {
+    $('#myModal .modal-header h4').text('Novo Contato');
+});
+
 $(".edit-btn").click(function (e) {
     e.preventDefault();
     var itemID = $(this).data('id');
+    $('#myModal .modal-header h4').text('Editar Contato');
     CarregaContato(itemID);
     //$("#inputID").val(itemID);
     //$('#myModal').modal('show');

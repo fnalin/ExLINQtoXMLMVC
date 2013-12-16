@@ -30,4 +30,70 @@
     <email />
     <telefone />
   </contato>
+  <contato id="4707e6c306cf46afa6f00d62b65a8b2e">
+    <nome>Daniel</nome>
+    <sobrenome>Augusto</sobrenome>
+    <email>daniel.augusto@hotmail.com</email>
+    <telefone>9999-9999</telefone>
+  </contato>
+  <contato id="637ac6b20c95498a9de2ad168ec80df7">
+    <nome>Carlos</nome>
+    <sobrenome>Adriano</sobrenome>
+    <email>carlos.adriano@hotmail.com</email>
+    <telefone>7777-7777</telefone>
+  </contato>
+  <contato id="130dbefad6f441478310446242c389d0">
+    <nome>Rafael</nome>
+    <sobrenome>Goes</sobrenome>
+    <email>rafa.goes@uol.com.br</email>
+    <telefone>5555-5555</telefone>
+  </contato>
+  <contato id="dcbedf022e4d40ec98478458b6a7e91d">
+    <nome>Nair</nome>
+    <sobrenome>Mitsui</sobrenome>
+    <email>nair.mitsui@msn.com</email>
+    <telefone>1111-1111</telefone>
+  </contato>
+  <contato id="18baa6c5986e4116840db471744fdc5d">
+    <nome>Brad</nome>
+    <sobrenome>Pitt</sobrenome>
+    <email>bp@teste.com</email>
+    <telefone>1111-1112</telefone>
+  </contato>
+  <contato id="0b58440331ba4e80a3cfbf9e2c37e330">
+    <nome>Angelina</nome>
+    <sobrenome>Julie</sobrenome>
+    <email>angelina.juli@teste.com</email>
+    <telefone>1111-1112</telefone>
+  </contato>
+  <contato id="fb48762ef8884c76ae14b28b86901e2e">
+    <nome>Morgan</nome>
+    <sobrenome>Freeman</sobrenome>
+    <email />
+    <telefone />
+  </contato>
+  <contato id="d817925685e64fbcb2111d75d461c5fa">
+    <nome>Bruce</nome>
+    <sobrenome>Dickinson</sobrenome>
+    <email></email>
+    <telefone></telefone>
+  </contato>
+  <contato id="c3ada418e3ad427ea0e4ee09b3dcc4c5">
+    <nome>Steve</nome>
+    <sobrenome>Vai</sobrenome>
+    <email>steve@fnalin.net</email>
+    <telefone>666-6666</telefone>
+  </contato>
+  <contato id="a41698ff20c048b4a2fdba2e3bcdf74d">
+    <nome>Joe</nome>
+    <sobrenome>Satriani</sobrenome>
+    <email>joe@teste.com</email>
+    <telefone>123-456-7890</telefone>
+  </contato>
+  <contato id="aff2b38005ad43faa9c93b31c593f5d8">
+    <nome>John</nome>
+    <sobrenome>Petrucci</sobrenome>
+    <email />
+    <telefone />
+  </contato>
 </Contatos>

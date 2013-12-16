@@ -8,3 +8,16 @@
     padding-left: 15px;
     padding-right: 15px;
 }
+
+.btn-group {
+    visibility: hidden;
+}
+
+
+.table tr:hover .btn-group {
+    visibility: visible;
+}
+
+.table tbody > tr > td {
+    vertical-align: middle;
+}

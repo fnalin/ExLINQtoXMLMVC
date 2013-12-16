@@ -16,7 +16,7 @@
 <br />
 <div class="row">
     <div class="col-md-8 col-md-offset-2">
-        <table class="table table-condensed table-bordered table-striped">
+        <table class="table table-condensed table-bordered table-striped table-hover">
             <thead>
                 <tr>
                     <th>
@@ -51,12 +51,14 @@
                             @Html.DisplayFor(modelItem => item.Telefone)
                         </td>
                         <td class="text-center">
-                            <button class="btn btn-default edit-btn" data-id="@item.ID.ToString().Replace("-","")" title="Editar @item.Nome">
-                                <i class="glyphicon glyphicon-check"></i>
-                            </button>
-                            <button class="btn btn-default delete-btn" data-nome="@item.Nome" data-id="@item.ID" title="Excluir @item.Nome">
-                                <i class="glyphicon glyphicon-trash"></i>
-                            </button>
+                            <div class="btn-group text-center">
+                                <button class="btn btn-default edit-btn" data-id="@item.ID.ToString().Replace("-","")" title="Editar @item.Nome">
+                                    <i class="glyphicon glyphicon-check"></i>
+                                </button>
+                                <button class="btn btn-default delete-btn" data-nome="@item.Nome" data-id="@item.ID" title="Excluir @item.Nome">
+                                    <i class="glyphicon glyphicon-trash"></i>
+                                </button>
+                            </div>
                         </td>
                     </tr>
                 }
@@ -64,7 +66,7 @@
         </table>
     </div>
 </div>
-@Html.Partial("_New")
+@Html.Partial("_Contato")
 @Html.Partial("_Delete")
 @section scripts {
     @Scripts.Render("~/bundles/jqueryval")
