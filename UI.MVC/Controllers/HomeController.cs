@@ -58,6 +58,9 @@ namespace UI.MVC.Controllers
             IEnumerable<XElement> oMemberList = doc.Element("Contatos").Elements("contato");
             if (contato.ID == Guid.Empty)
             {
+                if (!PodeIncluir())
+                    return RedirectToAction("Index");
+
                 var oMember = new XElement("contato",
                  new XAttribute("id", Guid.NewGuid().ToString().Replace("-", "")),
                  new XElement("nome", contato.Nome),
@@ -75,7 +78,7 @@ namespace UI.MVC.Controllers
                                select member).SingleOrDefault();
 
                 oMember.SetElementValue("nome", contato.Nome != null ? contato.Nome : string.Empty);
-                oMember.SetElementValue("sobrenome", contato.Sobrenome != null ? contato.Sobrenome: string.Empty);
+                oMember.SetElementValue("sobrenome", contato.Sobrenome != null ? contato.Sobrenome : string.Empty);
                 oMember.SetElementValue("email", contato.Email != null ? contato.Email : string.Empty);
                 oMember.SetElementValue("telefone", contato.Telefone != null ? contato.Telefone : string.Empty);
             }
@@ -85,7 +88,7 @@ namespace UI.MVC.Controllers
 
         public JsonResult EditContato(string id)
         {
-            XDocument doc = XDocument.Load(filePath); 
+            XDocument doc = XDocument.Load(filePath);
             IEnumerable<XElement> oMemberList = doc.Element("Contatos").Elements("contato"); //get the member node.
 
             var oMember = (from member in oMemberList
@@ -137,6 +140,35 @@ namespace UI.MVC.Controllers
 
         public PartialViewResult CarregaMenuPaginacao()
         {
+
+            var total = contarRegistros();
+
+            var _blocoTotal = (total / qtdeItensNoBloco);
+            if (total % qtdeItensNoBloco > 0)
+                _blocoTotal++;
+
+            ViewBag.total = _blocoTotal;
+            return PartialView("_MenuPaginacao");
+        }
+
+        public PartialViewResult AvisoQtdeUltrapassada()
+        {
+
+            if (!PodeIncluir())
+                return PartialView("_Aviso");
+
+            return null;
+        }
+
+        public ActionResult About()
+        {
+            ViewBag.Message = "App demo Team - MVC - LINQTOXML";
+
+            return View();
+        }
+
+        private int contarRegistros()
+        {
             var element = XElement.Load(filePath);
             var query = from member in element.Descendants("contato")
                         select new Contato
@@ -147,22 +179,12 @@ namespace UI.MVC.Controllers
                             Email = member.Element("email").Value,
                             Telefone = member.Element("telefone").Value
                         };
-            var total = query.Count();
-
-            var _blocoTotal = (total / qtdeItensNoBloco);
-            if (total % qtdeItensNoBloco > 0)
-                _blocoTotal++;
-
-            ViewBag.total = _blocoTotal;
-            return PartialView("_MenuPaginacao");
+            return query.Count();
         }
 
-        public ActionResult About()
+        private bool PodeIncluir()
         {
-            ViewBag.Message = "App demo Team - MVC - LINQTOXML";
-
-            return View();
+            return contarRegistros() < 20;
         }
-
     }
 }

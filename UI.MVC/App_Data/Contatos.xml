@@ -96,4 +96,22 @@
     <email />
     <telefone />
   </contato>
+  <contato id="8df9df4a54ed418ab133f3c2d6d5fd4c">
+    <nome>Item</nome>
+    <sobrenome>Novo</sobrenome>
+    <email />
+    <telefone />
+  </contato>
+  <contato id="072253f77c4a4a44adfa989126997a51">
+    <nome>Mais</nome>
+    <sobrenome>um</sobrenome>
+    <email />
+    <telefone />
+  </contato>
+  <contato id="ce25049e79ab4004bbb287335b3b6cb3">
+    <nome>Outro</nome>
+    <sobrenome>Contato</sobrenome>
+    <email />
+    <telefone />
+  </contato>
 </Contatos>

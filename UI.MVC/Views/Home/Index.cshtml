@@ -6,6 +6,8 @@
     <h4>Página inicial - <small>Listagem de Contatos</small></h4>
 </div>
 <br />
+<div id="avisoQtde">@*Alerta é carregado aqui!*@</div>
+<br />
 <div class="row text-center">
     <button class="btn btn-default" data-toggle="modal" data-target="#myModal">
         Novo Contato
@@ -26,6 +28,7 @@
 @section scripts {
     @Scripts.Render("~/bundles/jqueryval")
     <script>
+        var urlAlerta = "@Url.Action("AvisoQtdeUltrapassada", "Home")/";
         var urlTabelaDados = "@Url.Action("RelacaoTabela", "Home")/";
         var urlMnuPaginacao = "@Url.Action("CarregaMenuPaginacao", "Home")/";
         var urlDelete = "@Url.Action("DeleteContato", "Home")/";

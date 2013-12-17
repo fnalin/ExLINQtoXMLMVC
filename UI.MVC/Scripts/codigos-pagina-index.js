@@ -47,6 +47,7 @@ var validador = $("form").validate({
 });
 
 $().ready(function () {
+    VerificarAlerta();
     CarregaDados(1);
     CarregaPaginacao();
 });
@@ -69,6 +70,23 @@ $('#myModal').on('show.bs.modal', function () {
 $("button.btn.btn-default").click(function () {
     $('#myModal .modal-header h4').text('Novo Contato');
 });
+
+var VerificarAlerta = function () {
+    var strUrl = urlAlerta;
+    $.ajax({
+        type: 'GET',
+        url: strUrl,
+        dataType: 'html',
+        cache: false,
+        async: true,
+        success: function (data) {
+            if (data != "") {
+                $("#avisoQtde").html(data);
+                $("button.btn.btn-default").hide();
+            }
+        }
+    });
+};
 
 var CarregaDados = function (bloco) {
     var strUrl = urlTabelaDados + "?bloco="+bloco;
