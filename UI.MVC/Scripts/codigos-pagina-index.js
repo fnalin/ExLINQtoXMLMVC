@@ -185,8 +185,12 @@ var CarregaContato = function (id) {
         cache: false,
         beforeSend: function () {
             $('#myModal').modal('show');
+            $("#inputID").val('');
+            var loading = "<span><em>Carregando</em>&nbsp;<i class='glyphicon glyphicon-refresh icon-refresh-animate'></i></span>";
+            $('#myModal .modal-header h4').after(loading);
         },
         success: function (data) {
+            $("div.modal-header span").remove();
             $("#inputID").val(id);
             $("#inputIDHidden").val(id);
             $("#inputNome").val(data.nome);
@@ -194,6 +198,9 @@ var CarregaContato = function (id) {
             $("#inputEmail").val(data.email);
             $("#inputTelefone").val(data.telefone);
             $("#inputNome").focus();
+        },
+        complete: function () {
+            $("div.modal-header span").remove();
         },
     });
 };

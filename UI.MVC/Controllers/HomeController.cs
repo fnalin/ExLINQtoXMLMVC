@@ -96,6 +96,8 @@ namespace UI.MVC.Controllers
                            member.Attribute("id").Value == id.Replace("-", "")
                            select member).SingleOrDefault();
 
+            //System.Threading.Thread.Sleep(5000);
+
             return Json(
                new
                {
@@ -124,7 +126,7 @@ namespace UI.MVC.Controllers
                         };
 
             //System.Threading.Thread.Sleep(2000);
-            if (bloco == 0) //se p bloco for 0 então ir para o último (esse valor vem da interface, qdo o cara cria um novo)
+            if (bloco == 0) //se o bloco for 0 então ir para o último (esse valor vem da interface, qdo o cara cria um novo)
             {
                 var total = query.Count();
                 bloco = (total / qtdeItensNoBloco);
